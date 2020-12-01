@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrecipe>
+    <recipe>
+       <recipename>French Fries</recipename>
+       <recipetype>Western</recipetype>
+       <recipeingredients>Potato
+           Salt</recipeingredients>
+       <recipesteps>1. Fry the potatoes
+    2. Sprinkle Salt</recipesteps>
+    </recipe>
+</testrecipe>
