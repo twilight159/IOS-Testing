@@ -13,7 +13,7 @@ class AddRecipeViewController: UIViewController, UIImagePickerControllerDelegate
     let realm = try! Realm()
     public var addHandler: (()->Void)?
     private let storage = Storage.storage().reference()
-    public var myrecipetype: RecipeType?
+    public var myrecipetype: RecipeTypeViewModel?
     
     var selectedType : String?
     var link : String = ""
@@ -180,7 +180,7 @@ class AddRecipeViewController: UIViewController, UIImagePickerControllerDelegate
         
         let myRecipe = Recipe()
         let rid = realm.objects(Recipe.self).last?.id
-        let foldername = myrecipetype?.recipetype
+        let foldername = myrecipetype?.RecipeText
         
         
         if(rid == nil){

@@ -5,13 +5,25 @@
 //  Created by Aidan Lee on 02/12/2020.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 struct RecipeTypeViewModel {
-    let RType: String
     
-    init(recipet: RecipeType) {
-        self.RType = recipet.recipetype
-    }
+    let RecipeText: String
+    
+    init(recipe: RecipeType) {
+        self.RecipeText = recipe.recipetype
+        
+        
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -12,8 +12,6 @@ pod 'RealmSwift'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 pod 'Alamofire'
-pod "SwiftyXMLParser",'~> 1.0'
-pod "Alamofire-SwiftyXMLParser", "~> 1.0.0-alpha1"
 
   target 'RecipeTests' do
     inherit! :search_paths

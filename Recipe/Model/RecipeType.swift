@@ -7,18 +7,16 @@
 
 import Foundation
 import RealmSwift
-import Alamofire
 
-typealias DownloadComplete = () -> ()
 
-class RecipeType: Object {
-    let url = "https://cs.au.dk/~amoeller/XML/xml/recipes.xml"
+public class RecipeType: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var recipetype: String = ""
     
-    override static func primaryKey() -> String? {
+    public override static func primaryKey() -> String? {
             return "id"
         }
+    
     
 
     

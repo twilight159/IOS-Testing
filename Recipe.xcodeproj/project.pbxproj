@@ -17,6 +17,7 @@
 		DD413C172576AAB000BA1565 /* RecipeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD413C162576AAB000BA1565 /* RecipeTableViewModel.swift */; };
 		DD413C312576B37700BA1565 /* testtype.xml in Resources */ = {isa = PBXBuildFile; fileRef = DD413C302576B37700BA1565 /* testtype.xml */; };
 		DD413C362576B39600BA1565 /* TestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD413C352576B39600BA1565 /* TestType.swift */; };
+		DD465DC725776F8A00A64E2F /* RecipeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD465DC625776F8A00A64E2F /* RecipeTest.swift */; };
 		DD9834B6254FC7C10082CB47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9834B5254FC7C10082CB47 /* AppDelegate.swift */; };
 		DD9834B8254FC7C10082CB47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9834B7254FC7C10082CB47 /* SceneDelegate.swift */; };
 		DD9834BA254FC7C10082CB47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9834B9254FC7C10082CB47 /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 		DD413C162576AAB000BA1565 /* RecipeTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewModel.swift; sourceTree = "<group>"; };
 		DD413C302576B37700BA1565 /* testtype.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testtype.xml; sourceTree = "<group>"; };
 		DD413C352576B39600BA1565 /* TestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestType.swift; sourceTree = "<group>"; };
+		DD465DC625776F8A00A64E2F /* RecipeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTest.swift; sourceTree = "<group>"; };
 		DD9834B2254FC7C10082CB47 /* Recipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD9834B5254FC7C10082CB47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD9834B7254FC7C10082CB47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,8 @@
 				DDB17C63254FCBCD008AC6FC /* Recipe.swift */,
 				DD413C0E25767CE300BA1565 /* Test.swift */,
 				DD413C352576B39600BA1565 /* TestType.swift */,
+				DD413BFF2576681A00BA1565 /* RecipeParser.swift */,
+				DD465DC625776F8A00A64E2F /* RecipeTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,7 +205,6 @@
 				DD9834B5254FC7C10082CB47 /* AppDelegate.swift */,
 				DD9834B7254FC7C10082CB47 /* SceneDelegate.swift */,
 				DD9834BB254FC7C10082CB47 /* Main.storyboard */,
-				DD413BFF2576681A00BA1565 /* RecipeParser.swift */,
 				DD9834BE254FC7C40082CB47 /* Assets.xcassets */,
 				DD9834C0254FC7C40082CB47 /* LaunchScreen.storyboard */,
 				DD9834C3254FC7C40082CB47 /* Info.plist */,
@@ -496,6 +499,7 @@
 				DDF13FA3254FE05C0036A65B /* RecipeTableViewController.swift in Sources */,
 				DD9834B8254FC7C10082CB47 /* SceneDelegate.swift in Sources */,
 				DD413C002576681A00BA1565 /* RecipeParser.swift in Sources */,
+				DD465DC725776F8A00A64E2F /* RecipeTest.swift in Sources */,
 				DDB17C64254FCBCD008AC6FC /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

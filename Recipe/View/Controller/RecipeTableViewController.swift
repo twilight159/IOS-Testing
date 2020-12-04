@@ -11,13 +11,16 @@ import RealmSwift
 class RecipeTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let realm = try! Realm()
     @IBOutlet var table: UITableView!
-    private var data = [Recipe]()
-    public var item: RecipeType?
+    private var data = [RecipeTableViewModel]()
+    public var item: RecipeTypeViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(item!.recipetype)
-        data = realm.objects(Recipe.self).map({ $0 })
+        print(item!.RecipeText)
+        let fetch = realm.objects(Recipe.self)
+        self.data = fetch.map({return RecipeTableViewModel(recipe: $0)})
+        print(data)
+        
         // Do any additional setup after loading the view.
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.delegate = self
@@ -25,30 +28,30 @@ class RecipeTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(TapAddButton))
         
-        fetchData()
+//        fetchData()
         
         
     }
     
-    private func fetchData(){
-        
-        do {
-            if let xmlUrl = Bundle.main.url(forResource: "test", withExtension: "xml"){
-                let xml = try String(contentsOf:xmlUrl, encoding: String.Encoding.utf8)
-                let recipeParser  = TestParser(withXML: xml)
-                let recipes = recipeParser.parse()
-                for rec in recipes {
-                    print(rec)
-                    data.append(rec)
-                }
-                
-            }
-            
-        } catch {
-            print(error)
-        }
-        
-    }
+//    private func fetchData(){
+//
+//        do {
+//            if let xmlUrl = Bundle.main.url(forResource: "test", withExtension: "xml"){
+//                let xml = try String(contentsOf:xmlUrl, encoding: String.Encoding.utf8)
+//                let recipeParser  = TestParser(withXML: xml)
+//                let recipes = recipeParser.parse()
+//                for rec in recipes {
+//                    print(rec)
+//                    data.append(rec)
+//                }
+//
+//            }
+//
+//        } catch {
+//            print(error)
+//        }
+//
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +60,7 @@ class RecipeTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let selected = item!.recipetype
+        let selected = item!.RecipeText
         let recipes = realm.objects(Recipe.self).filter("RecType == %@", selected)
         if indexPath.row < recipes.count {
             cell.textLabel?.text = recipes[indexPath.row].Rname
@@ -72,7 +75,7 @@ class RecipeTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selected = item!.recipetype
+        let selected = item!.RecipeText
         let recipes = realm.objects(Recipe.self).filter("RecType == %@", selected)
         let reciperow = recipes[indexPath.row]
         guard let vc = storyboard?.instantiateViewController(identifier: "detailrecipe") as? DetailViewController else {
@@ -100,7 +103,8 @@ class RecipeTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func refresh(){
-        data = realm.objects(Recipe.self).map({ $0 })
+        let fetch = realm.objects(Recipe.self)
+        self.data = fetch.map({return RecipeTableViewModel(recipe: $0)})
         table.reloadData()
     }
 

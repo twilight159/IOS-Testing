@@ -9,6 +9,9 @@
     <recipe>
        <recipetype>Thai</recipetype>
     </recipe>
+    <recipe>
+       <recipetype>Western</recipetype>
+    </recipe>
 </test>
 
 

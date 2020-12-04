@@ -13,9 +13,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     private let realm = try! Realm()
     
-    private var TestItem: [Recipe]?
+    private var RTypeViewModel = [RecipeTypeViewModel]()
     
-    private var RType = [RecipeType]()
+    let APIKey = "5c12e6a0c46245fcb47e546d50086ede"
+    
+    let firstRun = UserDefaults.standard.bool(forKey: "firstRun") as Bool
+    
+    
+    
+    
     
     @IBAction func addTypeButton(){
         guard let vc = storyboard?.instantiateViewController(identifier: "add") as? InputRecipeViewController else {
@@ -32,19 +38,43 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var RecipePicker: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        _  = fetchData
+//        _  = fetchData
+        
+        if firstRun {
+            
+        } else {
+            runFirst()
+        }
+        
+        
+        
+        
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         // Do any additional setup after loading the view.
         
-        RType = realm.objects(RecipeType.self).map({ $0 })
+        //RType = realm.objects(RecipeType.self).map({ $0 })
+        let courses = realm.objects(RecipeType.self)
+        
+        self.RTypeViewModel = courses.map({return RecipeTypeViewModel(recipe: $0)})
+        
+        
+        
+        
+        
         RecipePicker.dataSource = self
         RecipePicker.delegate = self
         
-        
+        RecipePicker.reloadAllComponents()
             
         
     }
     
+    func runFirst(){
+        _  = fetchData
+        let recipeservice = RecipeParser(APIKey:"\(APIKey)")
+        recipeservice.getallrecipetype()
+        UserDefaults.standard.setValue(true, forKey: "firstRun")
+    }
     
     
     
@@ -88,22 +118,22 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return RType.count
+        return RTypeViewModel.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return RType[row].recipetype
+        return RTypeViewModel[row].RecipeText
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let reciperow = RType[row]
+        let reciperow = RTypeViewModel[row]
         
         guard let vc = storyboard?.instantiateViewController(identifier: "recipe") as? RecipeTableViewController else {
             return
         }
         vc.item  = reciperow
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.title = reciperow.recipetype
+        vc.title = reciperow.RecipeText
         navigationController?.pushViewController(vc, animated: true)
         
         
@@ -111,7 +141,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func refresh(){
-        RType = realm.objects(RecipeType.self).map({ $0 })
+        let courses = realm.objects(RecipeType.self)
+        self.RTypeViewModel = courses.map({return RecipeTypeViewModel(recipe: $0)})
         RecipePicker.reloadAllComponents()
     }
 
